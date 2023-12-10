@@ -11,6 +11,7 @@ fetch(`https://pokeapi.co/api/v2/pokemon?limit=${MAX_POKEMON}`)
 .then((data) =>{
 
     allPokemons = data.results;
+    displayPokemons(allPokemons);
 });
 
 const fetchPokemonDataBeforeRedirect= async (id)=>{
@@ -68,8 +69,15 @@ const displayPokemons = (pokemon)=>{
 
 
             const success = await fetchPokemonDataBeforeRedirect(pokemonID);
+            if (success) {
+    
+                window.location.href=`../detail.html?id=${pokemonID}`;            
+            }
 
         });
-    })
+
+
+        listWrapper.appendChild(listItem);
+    });
 
 };
